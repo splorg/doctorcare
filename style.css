@@ -1,3 +1,5 @@
+/************** GERAL **************/
+
 :root {
 
     /* CORES PRIMÁRIAS */
@@ -16,44 +18,83 @@
 
     font-size: 62.5%; /* 1rem = 10px */
 
+    --nav-height: 7.2rem;
+
 }
 
 * {
     font-family: 'DM Sans', sans-serif;
     font-size: 1.6rem;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-header {
-    width: 37.5rem;
-    margin: 4.1rem auto 0 auto;
+body {
     text-align: center;
+    width: 100%;
+    height: 100%;
+    overflow: overlay;
+}
+
+.wrapper {
+    width: 37.5rem;
+    margin-inline: auto;
+    padding-inline: 2.4rem;
+}
+
+ul {
+    list-style: none;
+}
+
+/************** HEADER **************/
+
+header::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    content: "";
+    width: 100%;
+    display: block;
+    height: calc(108rem + var(--nav-height));
     background-color: var(--primary-color-light);
 }
 
-h4 {
+header {
+    margin-top: calc(4.1rem + var(--nav-height));
+    margin-inline: auto;
+}
+
+header h4 {
     font-size: 1.4rem;
     color: var(--primary-color);
     margin-bottom: 1.6rem;
 }
 
-h1 {
+header h1 {
     font-size: 3.4rem;
     color: var(--secondary-color);
     line-height: 130%;
     margin-bottom: 2.4rem;
 }
 
-p {
+header p {
     font-size: 1.8rem;
     color: var(--secondary-color-light);
     line-height: 150%;
     margin-bottom: 3.2rem;
 }
 
-header > button {
+header button {
     margin-bottom: 6rem;
+}
+
+header img {
+    display: block;
+    width: 26.4rem;
+    margin-inline: auto;
+    object-position: 0 2rem;
 }
 
 .primary-button {
@@ -71,10 +112,165 @@ header > button {
     height: 6.2rem;
     border-radius: 4rem;
     border: none;
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
 }
 
 .primary-button:hover {
     background-color: var(--primary-hover);
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 32.7rem;
+    padding-block: 4rem;
+    margin-inline: auto;
+    background-color: var(--primary-color-beige);
+    gap: 6rem;
+    border: 1px solid var(--primary-color-light);
+    border-radius: 0.6rem;
+}
+
+.stat h3 {
+    font-size: 4.8rem;
+    color: var(--secondary-color);
+    line-height: 130%;
+    margin-bottom: 0.4rem;
+}
+
+.stat p {
+    margin: 0;
+    color: var(--primary-color);
+    line-height: 150%;
+}
+
+/************** NAV **************/
+
+nav {
+display: flex;
+
+height: var(--nav-height);
+
+position: fixed;
+top: 0;
+left: 50%;
+transform: translateX(-50%);
+}
+
+nav .wrapper {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+nav.scroll {
+background: var(--primary-color);
+width: 100vw;
+position: fixed;
+top: 0;
+}
+
+nav.scroll svg:nth-child(1) path {
+fill: white;
+}
+
+nav.scroll button path {
+stroke: white;
+}
+
+nav button {
+background: none;
+border: none;
+cursor: pointer;
+}
+
+/************** MENU EXPANDED **************/
+
+body.menu-expanded {
+    overflow: hidden;
+}
+
+body.menu-expanded > :not(nav) {
+    display: none;
+}
+
+.menu,
+.close-menu,
+body.menu-expanded .open-menu {
+    opacity: 0;
+    visibility: hidden;
+}
+
+body.menu-expanded .menu,
+body.menu-expanded .close-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+body.menu-expanded .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    width: 100vw;
+    height: 100vh;
+    padding-top: var(--nav-height);
+}
+
+body.menu-expanded nav {
+    position: relative;
+}
+
+.menu ul:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    gap: 4.8rem;
+    margin-top: 6rem;
+    font-weight: 700;
+    line-height: 3.1rem;
+}
+
+.menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 2.4rem;
+}
+
+.menu .button {
+    background-color: white;
+    border-radius: 4rem;
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 2.3rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--primary-color);
+    display: inline-block;
+    padding: 1.6rem 3.2rem;
+    margin-top: 4.8rem;
+    margin-bottom: 8rem;
+    width: fit-content;
+    margin-inline: auto;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3.2rem;
+}
+
+body.menu-expanded .logo,
+body.menu-expanded button {
+    position: relative;
+    z-index: 100;
+}
+
+body.menu-expanded .logo path {
+    fill: white;
+}
+    
+body.menu-expanded button path {
+    stroke: white;
 }
