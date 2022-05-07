@@ -8,6 +8,29 @@ function onScroll() {
 
     showBackToTopButtonOnScroll()
 
+    activateMenuAtCurrentSection(home)
+    activateMenuAtCurrentSection(services)
+    activateMenuAtCurrentSection(about)
+    activateMenuAtCurrentSection(contact)
+
+}
+
+function activateMenuAtCurrentSection(section) {
+    
+    const targetLine = scrollY + innerHeight / 2
+    const sectionTop = section.offsetTop
+    const sectionHeight = section.offsetHeight
+    const sectionEndsAt = sectionTop + sectionHeight
+    const sectionId = section.getAttribute('id')
+
+    const menuElement = document.querySelector(`.menu a[href*=${sectionId}]`)
+
+    menuElement.classList.remove('active')
+
+    if (targetLine >= sectionTop && !(sectionEndsAt <= targetLine)) {
+        menuElement.classList.add('active')
+    }
+
 }
 
 function showNavOnScroll() {
